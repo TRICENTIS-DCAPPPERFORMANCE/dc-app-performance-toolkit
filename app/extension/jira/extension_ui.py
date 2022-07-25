@@ -1,6 +1,7 @@
 import random
 
 from selenium.webdriver.common.by import By
+from app.selenium_ui.jira.pages.selectors import SearchLocators
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
@@ -40,5 +41,59 @@ def app_specific_action(webdriver, datasets):
             page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
             page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))  # Wait for you app-specific UI element by ID selector
         sub_measure()
+    measure()
+
+def view_issue_qtest_plugin_enabled(webdriver, datasets):
+    page = BasePage(webdriver)
+    if datasets['custom_issues']:
+        issue_key = datasets['custom_issue_key']
+
+    @print_timing("selenium_view_issue_qtest_plugin_enabled")
+    def measure():
+
+        @print_timing("selenium_view_issue_qtest_plugin_enabled:view_issue_qtest_test_execution")
+        def sub_measure():
+            page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
+            page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
+
+            page.wait_until_available_to_switch((By.CSS_SELECTOR, "#qtest-test-run-link-panel iframe"))
+            page.wait_until_any_ec_presented(selector_names=[(By.XPATH, "(//div[@class='aui-group']/div[contains(text(),'There is no test run associated with this issue.')]) | (//div[@class='iframe-bar-chart-stack']/div)")])
+            page.return_to_parent_frame()
+
+        sub_measure()
+    measure()
+
+def search_jql_qtest_plugin_enabled(webdriver, datasets):
+    page = BasePage(webdriver)
+    jql = "project = SLTP AND summary ~ 'ManagerIssue*' ORDER BY Key DESC, updated DESC"
+
+    @print_timing("selenium_search_jql_qtest_plugin_enabled")
+    def measure():
+        page.go_to_url(f"{JIRA_SETTINGS.server_url}/issues/?jql={jql}")
+        page.wait_until_any_ec_presented(selector_names=[SearchLocators.search_issue_table,
+                                                         SearchLocators.search_issue_content,
+                                                         SearchLocators.search_no_issue_found])
+
+        # switch to qTest Widget iframe
+        page.wait_until_available_to_switch((By.CSS_SELECTOR, "#qtest-test-run-link-panel iframe"))
+        page.wait_until_any_ec_presented(selector_names=[(By.XPATH, "(//div[@class='aui-group']/div[contains(text(),'There is no test run associated with this issue.')]) | (//div[@class='iframe-bar-chart-stack']/div)")])
+        page.return_to_parent_frame()
+
+    measure()
+
+def view_qtest_widget_qtest_plugin_enabled(webdriver, datasets):
+    page = BasePage(webdriver)
+
+    @print_timing("selenium_view_qtest_widget_plugin_enabled")
+    def measure():
+        page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/SLTP?selectedItem=com.qas.qtest.plugins.jira-plugin:qtest-panel")
+        page.wait_until_visible((By.CSS_SELECTOR, "#sidebar-page-container iframe"))
+
+        # switch to qTest Widget iframe
+        page.wait_until_available_to_switch((By.CSS_SELECTOR, "#sidebar-page-container iframe"))
+        page.wait_until_visible((By.XPATH, "//form[@id='select-project']//button"))
+        page.wait_until_visible((By.XPATH, "//div/h3[text()='Resolved Defects: By Test Run Status']/../..//a[text()='View Defects']"))
+        page.return_to_parent_frame()
+
     measure()
 
