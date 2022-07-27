@@ -38,7 +38,7 @@ JSM_JMX_AGENTS = APP_DIR / "jmeter" / "jsm_agents.jmx"
 JSM_JMX_CUSTOMERS = APP_DIR / "jmeter" / "jsm_customers.jmx"
 JMETER_HOME = Path().home() / '.bzt' / 'jmeter-taurus'
 WINDOWS = "Windows"
-DEFAULT_HOSTNAMES = ['test_jira_instance.atlassian.com',
+DEFAULT_HOSTNAMES = ['jira-loadb-sarq4d1m7tp5-1118440984.us-east-1.elb.amazonaws.com',
                      'test_confluence_instance.atlassian.com',
                      'test_bitbucket_instance.atlassian.com',
                      'test_jsm_instance.atlassian.com',
