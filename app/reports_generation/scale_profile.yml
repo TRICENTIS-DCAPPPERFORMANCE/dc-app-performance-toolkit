@@ -4,13 +4,13 @@ runs:
   # fullPath should contain a full path to the directory with run results. E.g. /home/$USER/dc-app-performance-toolkit/app/results/jira/2019-08-06_18-41-08
   - runName: "1 Node"
     runType: "baseline"
-    fullPath: ""
+    fullPath: 'C:\Users\qasadmin\dc-app-performance-toolkit\app\results\jira\ScalabilityTestRun3_1NodeJira_2022-07-27_19-49-21'
   - runName: "2 Nodes"
     runType: "experiment"
-    fullPath: ""
+    fullPath: 'C:\Users\qasadmin\dc-app-performance-toolkit\app\results\jira\ScalabilityTestRun4_2NodeJira_2022-07-27_21-41-26'
   - runName: "4 Nodes"
     runType: "experiment"
-    fullPath: ""
+    fullPath: 'C:\Users\qasadmin\dc-app-performance-toolkit\app\results\jira\ScalabilityTestRun5_4NodeJira_2022-07-28_01-06-46'
 
 # Chart generation configs
 index_col: "Action"
