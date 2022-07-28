@@ -781,7 +781,12 @@ JMeterUtils.setProperty(&quot;c_AtlToken&quot; + user_counter, atl_token)
                 <elementProp name="jql" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.name">jql</stringProp>
-                  <stringProp name="Argument.value">assignee = currentUser() AND resolution = unresolved ORDER BY priority DESC, created ASC</stringProp>
+                  <!-- 
+                    Note 3: Replace your JQL query to search issues according to respective project
+                    Note 4: In my project we have used the either one in below two queries
+                    query 1: summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC 
+                    query 2: Project in (JPTS, JPTK) and summary ~ '*qTestManagerIssue*'  ORDER BY Key DESC, updated DESC -->
+                  <stringProp name="Argument.value">summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1885,7 +1890,12 @@ if ( sleep_time &gt; 0 ) {
                     <elementProp name="jql" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">jql</stringProp>
-                      <stringProp name="Argument.value">order by created DESC</stringProp>
+                      <!-- 
+                    Note 3: Replace your JQL query to search issues according to respective project
+                    Note 4: In my project we have used the either one in below two queries
+                    query 1: summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC 
+                    query 2: Project in (JPTS, JPTK) and summary ~ '*qTestManagerIssue*'  ORDER BY Key DESC, updated DESC -->
+                      <stringProp name="Argument.value">summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -2070,7 +2080,12 @@ vars.put(&quot;p_request_body&quot;, p_request_body.trim());
                     <elementProp name="jql" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">jql</stringProp>
-                      <stringProp name="Argument.value">order by created DESC</stringProp>
+                       <!-- 
+                    Note 5: Replace your JQL query to search issues according to respective project
+                    Note 6: In my project we have used the either one in below two queries
+                    query 1: summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC 
+                    query 2: Project in (JPTS, JPTK) and summary ~ '*qTestManagerIssue*'  ORDER BY Key DESC, updated DESC -->
+                      <stringProp name="Argument.value">summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -3684,7 +3699,12 @@ if ( sleep_time &gt; 0 ) {
                     <elementProp name="jql" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">true</boolProp>
                       <stringProp name="Argument.name">jql</stringProp>
-                      <stringProp name="Argument.value">assignee = currentUser() AND resolution = unresolved ORDER BY priority DESC, created ASC</stringProp>
+                  <!-- 
+                    Note 7: Replace your JQL query to search issues according to respective project
+                    Note 8: In my project we have used the either one in below two queries
+                    query 1: summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC 
+                    query 2: Project in (JPTS, JPTK) and summary ~ '*qTestManagerIssue*'  ORDER BY Key DESC, updated DESC -->
+                      <stringProp name="Argument.value">summary ~ 'qTestManagerIssue*' ORDER BY Key DESC, updated DESC</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
