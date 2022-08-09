@@ -65,6 +65,17 @@ Refer to `app/selenium_ui/jira/modules.py` for examples.
 # def test_1_selenium_custom_action(jira_webdriver, jira_datasets, jira_screen_shots):
 #     extension_ui.app_specific_action(jira_webdriver, jira_datasets)
 
+##### qTest Scenario plugin
+
+def test_1_selenium_view_issue_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.view_issue_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets)
+
+def test_1_selenium_search_jql_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.search_jql_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets)
+
+def test_1_selenium_edit_issue_has_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets, jira_screen_shots):
+    extension_ui.update_issue_qtest_scenario_plugin_enabled(jira_webdriver, jira_datasets)
+
 
 # this action should be the last one
 def test_2_selenium_z_log_out(jira_webdriver, jira_datasets, jira_screen_shots):

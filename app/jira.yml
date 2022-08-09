@@ -5,38 +5,42 @@ settings:
   verbose: false
   check-updates: false    # disable bzt check for updates
   env:
-    application_hostname: test_jira_instance.atlassian.com    # Jira DC hostname without protocol and port e.g. test-jira.atlassian.com or localhost
+    application_hostname: <Replace the enterprise scale jira url without http/https>    # Jira DC hostname without protocol and port e.g. test-jira.atlassian.com or localhost
     application_protocol: http      # http or https
     application_port: 80            # 80, 443, 8080, 2990, etc
     secure: True                    # Set False to allow insecure connections, e.g. when using self-signed SSL certificate
     application_postfix:            # e.g. /jira in case of url like http://localhost:2990/jira
     admin_login: admin
     admin_password: admin
+    # scenario plugin configure
+    scenario_server: scenario-v2-0.qas-labs.com
+    type_git_repo: github
     load_executor: jmeter           # jmeter and locust are supported. jmeter by default.
-    concurrency: 200                # number of concurrent virtual users for jmeter or locust scenario
+    concurrency: 200               # number of concurrent virtual users for jmeter or locust scenario
     test_duration: 45m
     ramp-up: 3m                     # time to spin all concurrent users
     total_actions_per_hour: 54500   # number of total JMeter/Locust actions per hour
     WEBDRIVER_VISIBLE: False
     JMETER_VERSION: 5.4.2
     LANGUAGE: en_US.utf8
-    allow_analytics: No            # Allow sending basic run analytics to Atlassian. These analytics help us to understand how the tool is being used and help us to continue to invest in this tooling. For more details please see our README.
+    allow_analytics: Yes            # Allow sending basic run analytics to Atlassian. These analytics help us to understand how the tool is being used and help us to continue to invest in this tooling. For more details please see our README.
     # Action percentage for Jmeter and Locust load executors
     create_issue: 4
-    search_jql: 11
-    view_issue: 34
+    search_jql: 14
+    view_issue: 32
     view_project_summary: 3
     view_dashboard: 10
     edit_issue: 5
     add_comment: 2
-    browse_projects: 9
-    view_scrum_board: 8
-    view_kanban_board: 7
+    browse_projects: 10
+    view_scrum_board: 4
+    view_kanban_board: 4
     view_backlog: 6
     browse_boards: 1
-    standalone_extension: 0 # By default disabled
+    standalone_extension: 5 # By default disabled
     # Custom dataset section.
-    custom_dataset_query:          # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
+    # Note: have to replace your query based on project which you setup
+    custom_dataset_query:            # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
 services:
   - module: shellexec
     prepare:
@@ -74,6 +78,8 @@ scenarios:
       application_protocol: ${application_protocol}
       application_port: ${application_port}
       application_postfix: ${application_postfix}
+      # scenario plugin config
+      scenario_server: ${scenario_server}
       # Workload model
       total_actions_per_hr: ${total_actions_per_hour}
       perc_create_issue: ${create_issue}

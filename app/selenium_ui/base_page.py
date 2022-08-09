@@ -82,7 +82,7 @@ class BasePage:
                                  locator=selector,
                                  time_out=timeout)
 
-    def wait_until_any_ec_presented(self, selectors, timeout=timeout):
+    def wait_until_any_ec_presented(self, selectors=[], timeout=timeout):
         any_ec = AnyEc()
         any_ec.ecs = tuple(ec.presence_of_element_located(selector) for selector in selectors)
         return self.__wait_until(expected_condition=any_ec, locator=selectors, time_out=timeout)
