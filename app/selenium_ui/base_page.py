@@ -1,7 +1,6 @@
 import random
 import string
 from collections import OrderedDict
-import time
 
 from packaging import version
 from selenium.common.exceptions import WebDriverException
@@ -57,19 +56,6 @@ class BasePage:
         by, locator = selector[0], selector[1]
         return True if self.driver.find_elements(by, locator) else False
 
-    def wait_for_js_statement(self, key, value, exception_msg=None, timeout=timeout):
-        start_time = time.time()
-        print(f'Waiting for {key} is equal to {value}: {timeout} s.')
-        exception_msg = exception_msg if exception_msg else f'{key} is not equal to {value} for {timeout} s. '
-
-        while time.time() - start_time < timeout:
-            js_current_value = self.execute_js(f'return {key}')
-            if js_current_value == value:
-                print(f'{key} == {value} after {time.time() - start_time} s.')
-                break
-        else:
-            raise SystemExit(f'{exception_msg}')
-
     def wait_until_invisible(self, selector, timeout=timeout):
         return self.__wait_until(expected_condition=ec.invisibility_of_element_located(selector), locator=selector,
                                  time_out=timeout)
@@ -96,7 +82,7 @@ class BasePage:
                                  locator=selector,
                                  time_out=timeout)
 
-    def wait_until_any_ec_presented(self, selectors, timeout=timeout):
+    def wait_until_any_ec_presented(self, selectors=[], timeout=timeout):
         any_ec = AnyEc()
         any_ec.ecs = tuple(ec.presence_of_element_located(selector) for selector in selectors)
         return self.__wait_until(expected_condition=any_ec, locator=selectors, time_out=timeout)
