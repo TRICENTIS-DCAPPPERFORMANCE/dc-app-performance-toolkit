@@ -63,7 +63,7 @@ We recommend using [virtualenv](https://virtualenv.pypa.io/en/latest/) for Tauru
 1. Install virtualenv with pip:
 ```
 pip install virtualenv
-```
+```]
 2. Create new virtual env with python3:
 ```
 virtualenv venv -p full_path_to_python # e.g. use `which python3.11` to find the path
