@@ -85,7 +85,7 @@ def view_qtest_widget_qtest_plugin_enabled(webdriver, datasets):
 
     @print_timing("selenium_view_qtest_widget_plugin_enabled")
     def measure():
-        page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/SLTP?selectedItem=com.qas.qtest.plugins.jira-plugin:qtest-panel")
+        page.go_to_url(f"{JIRA_SETTINGS.server_url}/projects/VLLR?selectedItem=com.qas.qtest.plugins.jira-plugin:qtest-panel")
         page.wait_until_visible((By.CSS_SELECTOR, "#sidebar-page-container iframe"))
 
         # switch to qTest Widget iframe
