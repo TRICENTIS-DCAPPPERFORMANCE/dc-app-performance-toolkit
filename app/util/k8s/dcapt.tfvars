@@ -10,13 +10,13 @@
 # Unique name of your enterprise-scale test cluster.
 # This value can not be altered after the configuration has been applied.
 # ! REQUIRED !
-environment_name = "dcapt-product"
+environment_name = "bamboo-enterprise-scale"
 
 # Supported products: jira, confluence, bitbucket, crowd and bamboo.
 # For JSM set product as jira.
 # e.g.: products = ["jira"]
 # ! REQUIRED !
-products = ["product-to-deploy"]
+products = ["bamboo"]
 
 # License
 # To avoid storing license in a plain text file, we recommend storing it in an environment variable prefixed with `TF_VAR_` (i.e. `TF_VAR_jira_license`) and keep the below line commented out
@@ -27,7 +27,7 @@ jira_license = "jira-license"
 confluence_license = "confluence-license"
 bitbucket_license = "bitbucket-license"
 crowd_license = "crowd-license"
-bamboo_license = "bamboo-license"
+bamboo_license = "AAABtA0ODAoPeNp1UsGSk0AQvfMVVHnRA3EgCUKqqDJL0I0LTBJQs1YuDXaWKWGIM0PW+PVCCEa3do/T0/1ev/f6VVRz/RNw3bJ0QmbWZDa2dT9JdYtYE80XCIrVfAEKva5iENOwLC2DKqvrEeSKHdFTosGhFDdVhoLub87PsM6hnD8gV9IzTC1kOXKJwa8DE6d/MC3DMrWkyWQu2KHj6yGDI5QNXN8XigtKejpgDBV6Po2iYOMv5+HQ0UKD35Ki6AfLfuIWZOFF/qP/4fYr/f2ZHhwgU0pTm07plrG4LCjY82J9ty1cZQer9Vv+DTM3lWr9c39/Bw1/3Hk7b5CxXHjhcpEEsRGaruuQ6cQZFkgUiI59D6VELUFxRNG232xbqe49NY1l7NhGSKcftR94+oJCdiJNm5B3xBmPTW3ViLwAiU+Nb9m8/xkXeHWtN11/3enXewPe7Gb61UctAtZWOfD8hRSejXFVAj8H+OzvBqta4SVlkxAy+D3osjQqHoAzOWTZfSsmNb/mqr2hoN2q9A4jWXM4Asf3fztGeV09iT34zs4oQZwGm9VmmQQDzPkYXkT5A+b3+iQwLAIUQ8KhGWls2tQm9nSBZ1r/DasZYcYCFEqaIxHJi8hkxjehXpD5yNxPlqcZX02ks"
 
 # Replica count.
 # Number of product application nodes.
@@ -76,8 +76,8 @@ max_cluster_capacity = 6
 # The final ingress domain is a subdomain within this domain. (eg.: environment.domain.com)
 # You can also provide a subdomain <subdomain.domain.com> and the final ingress domain will be <environment.subdomain.domain.com>.
 # When commented out, the ingress controller is not provisioned and the application is accessible over HTTP protocol (not HTTPS).
-#
-#domain = "<example.com>"
+
+domain = "qtestdev.com"
 
 ################################################################################
 # Execution Environment Settings

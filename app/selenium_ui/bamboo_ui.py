@@ -48,8 +48,19 @@ Add custom actions anywhere between login and log out action. Move this to a dif
 Write your custom selenium scripts in `app/extension/bamboo/extension_ui.py`.
 Refer to `app/selenium_ui/bamboo/modules.py` for examples.
 """
-# def test_1_selenium_custom_action(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
-#     extension_ui.app_specific_action(bamboo_webdriver, bamboo_datasets)
+def test_1_selenium_custom_action(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
+    extension_ui.app_specific_action(bamboo_webdriver, bamboo_datasets)
+###qTest plugin
+# def test_1_selenium_view_build_summary_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
+#     modules.view_build_summary_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets)
+# def test_1_selenium_view_plan_history_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
+#     modules.view_plan_history_page_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets)
+    
+def test_1_selenium_view_plan_summary_qtest_plugin_page_enabled(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
+    extension_ui.view_plan_summary_qtest_plugin_page_enabled(bamboo_webdriver, bamboo_datasets)
+
+def test_1_selenium_view_job_configuration_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets, bamboo_screen_shots):
+    extension_ui.view_job_configuration_qtest_plugin_enabled(bamboo_webdriver, bamboo_datasets)
 
 
 # this action should be the last one

@@ -4,15 +4,15 @@ from selenium.webdriver.common.by import By
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
-from selenium_ui.bamboo.pages.pages import Login
+from selenium_ui.bamboo.pages.pages import JobConfiguration, Login, PlanSummary, QtestPluginPage
 from util.conf import BAMBOO_SETTINGS
 
 
 def app_specific_action(webdriver, datasets):
     page = BasePage(webdriver)
-    rnd_plan = random.choice(datasets["build_plans"])
+   # rnd_plan = random.choice(datasets["build_plans"])
 
-    build_plan_id = rnd_plan[1]
+    build_plan_id = 'SBP-STP'
 
     # To run action as specific user uncomment code bellow.
     # NOTE: If app_specific_action is running as specific user, make sure that app_specific_action is running
@@ -36,6 +36,28 @@ def app_specific_action(webdriver, datasets):
             page.go_to_url(f"{BAMBOO_SETTINGS.server_url}/browse/{build_plan_id}")
             page.wait_until_visible((By.ID, "buildResultsTable"))  # Wait for summary field visible
             # Wait for you app-specific UI element by ID selector
-            page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))
+           # page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))
         sub_measure()
+    measure()
+
+def view_plan_summary_qtest_plugin_page_enabled(webdriver, datasets):
+
+    build_plan_id = 'SBP-STP'
+    plan_history = QtestPluginPage(webdriver, build_plan_id=build_plan_id)
+
+    @print_timing("view_plan_summary_qtest_plugin_page_enabled")
+    def measure():
+        plan_history.go_to_plan_qtest_page()
+        plan_history.wait_for_page_loaded()
+
+    measure()
+    
+def view_job_configuration_qtest_plugin_enabled(webdriver, datasets):
+
+    @print_timing("view_job_configuration_qtest_plugin_enabled")
+    def measure():
+        plan_summary_page = PlanSummary(webdriver)
+        plan_summary_page.open_actions_dropdown()
+        plan_summary_page.click_configure_plan()
+      
     measure()
