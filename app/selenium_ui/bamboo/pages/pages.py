@@ -1,6 +1,6 @@
 from selenium_ui.base_page import BasePage
 
-from selenium_ui.bamboo.pages.selectors import QtestPluginLocators, UrlManager, LoginPageLocators, AllProjectsLocators, AllBuildsLocators, \
+from selenium_ui.bamboo.pages.selectors import QtestPluginBuildConfigurationLocators, QtestPluginLocators, UrlManager, LoginPageLocators, AllProjectsLocators, AllBuildsLocators, \
     PlanConfigurationLocators, BuildActivityLocators, PlanSummaryLocators, PlanHistoryLocators, BuildSummaryLocators, \
     BuildLogsLocators, JobConfigLocators, LogoutLocators
 
@@ -49,9 +49,6 @@ class BuildActivity(BasePage):
 
 class PlanSummary(BasePage):
     page_loaded_selector = [PlanSummaryLocators.plan_details_summary, PlanSummaryLocators.plan_stats_summary]
-    #added below code for the custom app 
-    actions_button = PlanSummaryLocators.plan_actions_button
-    configure_plan_link = PlanSummaryLocators.configure_plan_link
 
     def __init__(self, driver, build_plan_id=None):
         BasePage.__init__(self, driver)
@@ -60,13 +57,6 @@ class PlanSummary(BasePage):
 
     def go_to_summary_plan_page(self):
         self.go_to_url(self.plan_summary_url)
-
-    # added for the custom app 
-    def open_actions_dropdown(self):
-        self.wait_until_clickable(self.actions_button).click()
-
-    def click_configure_plan(self):
-        self.wait_until_clickable(self.configure_plan_link).click()
 
 
 class PlanHistory(BasePage):
@@ -86,11 +76,22 @@ class QtestPluginPage(BasePage):
     def __init__(self, driver, build_plan_id=None):
         BasePage.__init__(self, driver)
         plan_qtest = UrlManager(build_plan_id=build_plan_id)
-        self.plan_qtest_plugin_url = plan_qtest.plan_qtest_plaugin_url()
+        self.plan_qtest_plugin_url = plan_qtest.plan_qtest_plugin_url()
 
     def go_to_plan_qtest_page(self):
         self.go_to_url(self.plan_qtest_plugin_url)
 
+
+class QtestBuildConfigurationPage(BasePage):
+    page_loaded_selector = QtestPluginBuildConfigurationLocators.build_results
+
+    def __init__(self, driver, build_plan_id=None):
+        BasePage.__init__(self, driver)
+        plan_qtest_build_configuration = UrlManager(build_plan_id=build_plan_id)
+        self.plan_qtest_build_configuration_url = plan_qtest_build_configuration.plan_qtest_build_configuration_url()
+
+    def go_to_plan_qtest_build_configuration_page(self):
+        self.go_to_url(self.plan_qtest_build_configuration_url)
 
 
 class BuildSummary(BasePage):

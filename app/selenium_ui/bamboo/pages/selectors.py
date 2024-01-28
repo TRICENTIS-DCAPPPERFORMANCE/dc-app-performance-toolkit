@@ -13,6 +13,8 @@ class UrlManager:
         self.plan_history_params = f'/browse/{build_plan_id}/history'
         # added for the qtest-plugin page
         self.plan_qtest_summary_params = f'/browse/{build_plan_id}/chain/qtest.action?planKey={build_plan_id}'
+        self.plan_qtest_build_configuration_params = f'/build/admin/edit/editBuildTasks.action?buildKey={build_plan_id}-JOB1'
+        
         self.build_summary_params = f'/browse/{build_plan_id}-1'
 
 
@@ -28,8 +30,11 @@ class UrlManager:
     def plan_history_url(self):
         return f"{self.host}{self.plan_history_params}"
     
-    def plan_qtest_plaugin_url(self):
+    def plan_qtest_plugin_url(self):
         return f"{self.host}{self.plan_qtest_summary_params}{self.plan_qtest_summary_params}"
+    
+    def plan_qtest_build_configuration_url(self):
+        return f"{self.host}{self.plan_qtest_build_configuration_params}"
 
     def build_summary_url(self):
         return f"{self.host}{self.build_summary_params}"
@@ -74,14 +79,16 @@ class BuildActivityLocators:
 class PlanSummaryLocators:
     plan_details_summary = (By.ID, "planDetailsSummary")
     plan_stats_summary = (By.ID, "planStatsSummary")
-    plan_actions_button = (By.XPATH,"//button[contains(@class,'aui-dropdown2-trigger') and .//span[contains(@class,'aui-iconfont-settings')]]")
-    configure_plan_link = (By.XPATH , "//a[@id=''editbuild:SBP-STP]")
+
 
 class PlanHistoryLocators:
     build_results = (By.CLASS_NAME, "aui-page-panel-content")
 
 class QtestPluginLocators:
     build_results = (By.CLASS_NAME, "aui-page-panel-content")
+
+class QtestPluginBuildConfigurationLocators:
+    build_results = (By.ID, "panel-editor-config")
 
 
 class BuildSummaryLocators:

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.conftest import print_timing
-from selenium_ui.bamboo.pages.pages import JobConfiguration, Login, PlanSummary, QtestPluginPage
+from selenium_ui.bamboo.pages.pages import JobConfiguration, Login, PlanSummary, QtestBuildConfigurationPage, QtestPluginPage
 from util.conf import BAMBOO_SETTINGS
 
 
@@ -43,21 +43,23 @@ def app_specific_action(webdriver, datasets):
 def view_plan_summary_qtest_plugin_page_enabled(webdriver, datasets):
 
     build_plan_id = 'SBP-STP'
-    plan_history = QtestPluginPage(webdriver, build_plan_id=build_plan_id)
+    qtest_plugin_page = QtestPluginPage(webdriver, build_plan_id=build_plan_id)
 
     @print_timing("view_plan_summary_qtest_plugin_page_enabled")
     def measure():
-        plan_history.go_to_plan_qtest_page()
-        plan_history.wait_for_page_loaded()
+        qtest_plugin_page.go_to_plan_qtest_page()
+        qtest_plugin_page.wait_for_page_loaded()
 
     measure()
     
 def view_job_configuration_qtest_plugin_enabled(webdriver, datasets):
 
+    build_plan_id = 'SBP-STP'
+    plan_job_configuration_page = QtestBuildConfigurationPage(webdriver, build_plan_id=build_plan_id)
+
     @print_timing("view_job_configuration_qtest_plugin_enabled")
     def measure():
-        plan_summary_page = PlanSummary(webdriver)
-        plan_summary_page.open_actions_dropdown()
-        plan_summary_page.click_configure_plan()
-      
+        plan_job_configuration_page.go_to_plan_qtest_build_configuration_page()
+        plan_job_configuration_page.wait_for_page_loaded()
+
     measure()
