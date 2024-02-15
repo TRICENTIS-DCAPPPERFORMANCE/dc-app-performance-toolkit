@@ -389,6 +389,9 @@
       "selenium_view_build_summary",
       "selenium_view_build_logs",
       "selenium_view_job_configuration",
+      "selenium_custom_action",
+      "selenium_view_plan_summary_qtest_plugin_page_enabled",
+      "selenium_view_job_configuration_qtest_plugin_enabled",
       "selenium_log_out"
     ],
     "locust": [

@@ -15,8 +15,8 @@ settings:
     load_executor: jmeter
     concurrency: 200                   # number of Bamboo users for Jmeter actions
     test_duration: 45m
-    ramp-up: 5m                        # time to spin all concurrent threads
-    total_actions_per_hour: 2000       # number of total JMeter actions per hour
+    ramp-up: 3m                        # time to spin all concurrent threads
+    total_actions_per_hour: 2000      # number of total JMeter actions per hour
     WEBDRIVER_VISIBLE: False
     JMETER_VERSION: 5.5
     LANGUAGE: en_US.utf8

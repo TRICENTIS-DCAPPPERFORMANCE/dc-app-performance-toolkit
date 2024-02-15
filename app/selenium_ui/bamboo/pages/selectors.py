@@ -31,7 +31,7 @@ class UrlManager:
         return f"{self.host}{self.plan_history_params}"
     
     def plan_qtest_plugin_url(self):
-        return f"{self.host}{self.plan_qtest_summary_params}{self.plan_qtest_summary_params}"
+        return f"{self.host}{self.plan_qtest_summary_params}"
     
     def plan_qtest_build_configuration_url(self):
         return f"{self.host}{self.plan_qtest_build_configuration_params}"

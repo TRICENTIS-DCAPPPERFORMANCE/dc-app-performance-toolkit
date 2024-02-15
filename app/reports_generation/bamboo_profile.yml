@@ -5,13 +5,13 @@ runs:
   # E.g. relativePath: "./app/results/bamboo/2024-01-01_10-10-10"
   - runName: "without app"
     runType: "baseline"
-    relativePath: "./app/results/bamboo/{TIMESTAMP}"
+    relativePath: "./app/results/bamboo/run 1"
   - runName: "with app"
     runType: "experiment"
-    relativePath: "./app/results/bamboo/{TIMESTAMP}"
+    relativePath: "./app/results/bamboo/run 2"
   - runName: "with app and app-specific actions"
     runType: "experiment"
-    relativePath: "./app/results/bamboo/{TIMESTAMP}"
+    relativePath: "./app/results/bamboo/run 3"
 
 # Chart generation config
 index_col: "Action"
